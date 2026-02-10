@@ -315,7 +315,7 @@ export default function App() {
                 <div className="bg-emerald-500/10 border border-emerald-500/40 rounded-2xl p-6 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
                   <div className="flex items-center gap-2 mb-3 text-emerald-400 font-bold">
                     <CheckCircle size={18} />
-                    <span>Premium Service Attention</span>
+                    <span>Premium Service</span>
                   </div>
                   <ul className="space-y-2 text-sm text-emerald-100/80">
                     <li>• Life time refill likes</li>
@@ -331,7 +331,7 @@ export default function App() {
                 <div className="bg-red-500/10 border border-red-500/40 rounded-2xl p-6 shadow-[0_0_20px_rgba(239,68,68,0.1)]">
                   <div className="flex items-center gap-2 mb-3 text-red-400 font-bold">
                     <AlertCircle size={18} />
-                    <span>Economy Service Attention</span>
+                    <span>Economy Service</span>
                   </div>
                   <ul className="space-y-2 text-sm text-red-100/80">
                     <li>• Non refill</li>
