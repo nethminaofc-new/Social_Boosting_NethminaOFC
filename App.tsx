@@ -207,7 +207,77 @@ export default function App() {
   };
 
   const handleFinalPurchase = async () => {
-    if (cart.length === 0) return;
+  if (cart.length === 0 || !user) return;
+
+  setIsProcessing(true);
+  setError(null);
+
+  try {
+    const newOrderId = generateOrderId();
+
+    await addDoc(collection(db, "orders"), {
+      orderId: newOrderId,
+      customerId: user.id,
+      customerEmail: user.email,
+      customerPhone: user.phone,
+      items: cart,
+      total: cartTotal,
+      payment: {
+        senderPhone: paymentSenderPhone,
+        referenceNumber: paymentRefNo || null,
+        receiptImage: paymentReceipt || null,
+        method: "Ez Cash"
+      },
+      status: "Pending",
+      createdAt: serverTimestamp()
+    });
+
+    setLastOrderId(newOrderId);
+    clearCart();
+    setView('SUCCESS');
+
+  } catch (err) {
+    setError("Failed to submit order.");
+    console.error(err);
+  }
+
+  setIsProcessing(false);
+};
+
+  setIsProcessing(true);
+  setError(null);
+
+  try {
+    const newOrderId = generateOrderId();
+
+    await addDoc(collection(db, "orders"), {
+      orderId: newOrderId,
+      customerId: user.id,
+      customerEmail: user.email,
+      customerPhone: user.phone,
+      items: cart,
+      total: cartTotal,
+      payment: {
+        senderPhone: paymentSenderPhone,
+        referenceNumber: paymentRefNo || null,
+        receiptImage: paymentReceipt || null,
+        method: "Ez Cash"
+      },
+      status: "Pending",
+      createdAt: serverTimestamp()
+    });
+
+    setLastOrderId(newOrderId);
+    clearCart();
+    setView('SUCCESS');
+
+  } catch (err) {
+    setError("Failed to submit order.");
+    console.error(err);
+  }
+
+  setIsProcessing(false);
+};
     
     // Require login for purchase
     if (!user) {
